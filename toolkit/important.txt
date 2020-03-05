@@ -1,0 +1,166 @@
+Here are some detailed numerial characters of regular DR datasets. 
+You can copy directly and use it for data preprocessing during training phrase,
+since it is very time-consuming to compute these characters on large dataset.
+
+All images are resized to 512x512 before calculating these characters.
+
+For the preprocessed dataset: code of preprocessing is ./toolkit/preprocessing.py
+the argument 'sigmaX' is related to ben color processing.
+
+Dataset:
+	Kaggle2015_DR_train
+	Kaggle2015_DR_preprocessed_train(sigmaX=10)
+	Kaggle2015+2019_DR_preprocessed_train(sigmaX=10)
+	Kaggle2019_DR_train
+	ISBI2018_train
+	ISBI2018_train+test
+	ISBI2020_train
+	ISBI2020_preprocessed_train(sigmaX=10)
+	ISBI2020_train+test
+	ISBI2020_preprocessed_train+test(sigmaX=10)
+
+Characters:
+	MEAN: mean value
+	STD: standard deviation
+	U: eigenvalue
+	EV: eigenvactor
+	BALANCE_WEIGHTS: reciprocal of ratio of each class in dataset
+
+===============================================================
+Kaggle2015_DR_train
+
+MEAN = [108.64628601 / 255, 75.86886597 / 255, 54.34005737 / 255]
+
+STD = [70.53946096 / 255, 51.71475228 / 255, 43.03428563 / 255]
+
+U = torch.tensor([[-0.56543481, 0.71983482, 0.40240142],
+                  [-0.5989477, -0.02304967, -0.80036049],
+                  [-0.56694071, -0.6935729, 0.44423429]], dtype=torch.float32)
+
+EV = torch.tensor([1.65513492, 0.48450358, 0.1565086], dtype=torch.float32)
+
+BALANCE_WEIGHTS = torch.tensor([1.3609453700116234, 14.378223495702006,
+                                6.637566137566138, 40.235967926689575,
+                                49.612994350282484], dtype=torch.double)
+
+===============================================================
+Kaggle2015_DR_preprocessed_train(sigmaX=10)
+
+MEAN = [0.5526258586659438, 0.5358703745005223, 0.5261124241401273]
+
+STD = [0.15279997373926116, 0.14627116174744156, 0.11912972190411034]
+
+BALANCE_WEIGHTS = torch.tensor([1.3609453700116234, 14.378223495702006,
+                                6.637566137566138, 40.235967926689575,
+                                49.612994350282484], dtype=torch.double)
+
+can not calculate U and EV since memory is limitied
+
+===============================================================
+Kaggle2015+2019_DR_preprocessed_train(sigmaX=10)
+
+MEAN = [0.5526258586659438, 0.5358703745005223, 0.5261124241401273]
+
+STD = [0.15279997373926116, 0.14627116174744156, 0.11912972190411034]
+
+BALANCE_WEIGHTS = torch.tensor([38785/27614, 38785/2812,
+                                38785/6290, 38785/1066,
+                                38785/1003], dtype=torch.double)
+
+===============================================================
+Kaggle2019_DR_train
+(test set do not have labels)
+
+MEAN = [0.42150313, 0.22500901, 0.07526358]
+
+STD = [0.2766358, 0.15143834, 0.0826507]
+
+U = torch.tensor([[-0.12569453, -0.8564691, 0.50066113],
+                  [-0.46428955, -0.39520053, -0.79262334],
+                  [-0.87671894, 0.33208015, 0.3479751]], dtype=torch.float32)
+
+EV = torch.tensor([0.09841777, 0.00683931, 0.00103468], dtype=torch.float32)
+
+BALANCE_WEIGHTS = torch.tensor([3662/1805, 3662/370,
+                                3662/999, 3662/193,
+                                3662/295], dtype=torch.double)
+
+===============================================================
+ISBI2018_train
+
+MEAN = [0.43701035, 0.21197902, 0.070874855]
+
+STD = [0.31068295, 0.16644582, 0.08554319]
+
+U = torch.tensor([[-0.15322354, -0.86970981, 0.46917735],
+                  [-0.45897698, -0.3578316, -0.8132015],
+                  [-0.87513581, 0.33994322, 0.34434856]], dtype=torch.float32)
+
+EV = torch.tensor([0.12504876, 0.00550403, 0.00099308], dtype=torch.float32)
+
+BALANCE_WEIGHTS = torch.tensor([413/134, 413/20,
+                                413/136, 413/74,
+                                413/49], dtype=torch.double)
+
+===============================================================
+ISBI2018_train+test 
+
+MEAN = [0.4381173, 0.21151826, 0.06857268]
+
+STD = [0.30939907, 0.1646194, 0.0826493]
+
+U = torch.tensor([[-0.14593928, -0.86795359, 0.47471916],
+                  [-0.45687619, -0.36648889, -0.81052454],
+                  [-0.87747699, 0.33517525, 0.34306221]], dtype=torch.float32)
+
+EV = torch.tensor([0.12340872, 0.00529217, 0.00095719], dtype=torch.float32)
+
+BALANCE_WEIGHTS = torch.tensor([516/168, 516/25,
+                                516/168, 516/93,
+                                516/62], dtype=torch.double)
+
+===============================================================
+ISBI2020_train
+
+MEAN = [0.3883482, 0.2401393, 0.1447494]
+
+STD = [0.3289673, 0.21827056, 0.15950131]
+
+U = torch.tensor([[-0.3496427, -0.76312473, 0.54349851],
+                  [-0.51521909, -0.32789963, -0.79185297],
+                  [-0.78249554, 0.55688642, 0.27852872]], dtype=torch.float32)
+
+EV = torch.tensor([0.17323209, 0.00654934, 0.00151927], dtype=torch.float32)
+
+BALANCE_WEIGHTS = torch.tensor([1200/540, 1200/140,
+                                1200/234, 1200/214,
+                                1200/72], dtype=torch.double)
+
+===============================================================
+ISBI2020_preprocessed_train(sigmaX=10)
+
+MEAN = [0.5555938, 0.53418064, 0.5213337]
+
+STD = [0.16183352, 0.1411609, 0.10492506]
+
+U = torch.tensor([[-0.41850981, -0.67490248, 0.6077468],
+                  [-0.59750913, -0.29935143, -0.74388948],
+                  [-0.68398273, 0.67445931, 0.27797889]], dtype=torch.float32)
+
+EV = torch.tensor([0.05315017, 0.00269258, 0.00128307], dtype=torch.float32)
+
+BALANCE_WEIGHTS = torch.tensor([1200/540, 1200/140,
+                                1200/234, 1200/214,
+                                1200/72], dtype=torch.double)
+
+===============================================================
+ISBI2020_train+test
+
+
+
+===============================================================
+ISBI2020_preprocessed_train+test(sigmaX=10)
+
+
+
+
