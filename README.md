@@ -3,7 +3,7 @@
 This solution is mainly in 3 stages:
 1. Ensembl efficientnet-b3, efficientnet-b4, efficientnet-b5 and pretrain on Kaggle2015 DR dataset, finetune on ISBI2020 DR dataset. 
 2. Train xgboost, svr, catboost models on logits output of ensembled models. 
-3. Bagging from stage 2.
+3. Voting on results from stage 2.
 
 ## Getting Started
 
@@ -76,5 +76,4 @@ python main.py --MODE=TEST
 
 ## Result
 
-To be updated
 
