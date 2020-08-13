@@ -1,7 +1,7 @@
 # ISBI2020 Challenge: Diabetic Retinopathy Assessment Grading and Diagnosis
 
 This solution is mainly in 3 stages:
-1. Ensembl efficientnet-b3, efficientnet-b4, efficientnet-b5 and pretrain on Kaggle2015 DR dataset, finetune on ISBI2020 DR dataset. 
+1. Ensemble EfficientNet-b3, EfficientNet-b4, EfficientNet-b5 and pretrain on Kaggle2015 DR dataset, finetune on ISBI2020 DR dataset. 
 2. Train xgboost, svr, catboost models on logits output of ensembled models. 
 3. Voting on results from stage 2.
 
@@ -26,26 +26,28 @@ Open ```./toolkit/preprocessing.py``` and change the 'dictionary', 'image size' 
 python ./toolkit/preprocessing.py
 ```
 Next, we rearrange the images according to the given labels in this way, which is the generic data arrangment for ```torchvision.dataset.DatasetFolder```. Note that the folder name of ```Train``` and ```Test``` may be different. Please see ```data_util.py``` for more datails.
+
+Open ```isbi2020_data_rearrangement.py```  and change the ‘dictionary’ inside, then excute
+```
+python ./toolkit/isbi2020_data_rearrangement.py
+```
+Then the data should be rearranged as following:
 ```
 ├── Data
     ├── Train
-    	├── class_x
+        ├── class_x
             ├── xxx.jpg
             ...
         ├── class_y
             ├── xxxjpg
             ...
     ├── Test
-    	├── class_x
+        ├── class_x
             ├── xxx.jpg
             ...
         ├── class_y
             ├── xxx.jpg
             ...
-```
-Open ```isbi2020_data_rearrangement.py```  and change the ‘dictionary’ inside, then excute
-```
-python ./toolkit/isbi2020_data_rearrangement.py
 ```
 ## Stage1: Training and Testing
 The following proceess is to be used on efficentnet-b3, efficientnet-b4, efficientnet-b5. Modify the model in ```'train_config.py'``` and ```'test_config.py'```.
@@ -68,12 +70,35 @@ And make sure that you have set the train and test folder correctly.
 python main.py --MODE=TRAIN
 ```
 ### Test
-Set ```''PRETRAINED_PATH'``` , the directory of saved model, then excute
+Set ```'PRETRAINED_PATH'``` , the directory of saved model, then excute
 ```
 python main.py --MODE=TEST
 ```
-## Stage2: Boosting
+## Stage2&3: Boosting and Voting
+Make directory for training and testing data for stage2 as following:
+```
+mkdir Boost_Data/Train
+mkdir Boost_Data/Test
+```
+Copy the csv file which contain the output of stage1 to ```./Boost_Data/Train/```.
+Here is an example:
+```
+cd Results/2020_02_19_14_18_14
+cp efficientnet_b*_fold*.csv ~/Doucuments/ISBI2020/Boost_Data/Train
+```
+Prepare the data for validation on boosting algorithm. ```val_config.py``` can be modified.
+```
+python main.py --MODE='VAL'
+```
+Copy the csv file which contain the validation results to ```./Boost_Data/Val/```. 
 
-## Result
+Then excute different boosting algorithms
+```
+python boost.py
+```
+Boosting parameters can be modified inside ```boost.py```. Then a csv file containing final result is created under the directory ```./fianl_result.csv```.
+
+
+
 
 
