@@ -2,7 +2,7 @@
 
 This solution is mainly in 3 stages:
 1. Ensemble EfficientNet-b3, EfficientNet-b4, EfficientNet-b5 and pretrain on Kaggle2015 DR dataset, finetune on ISBI2020 DR dataset. 
-2. Train xgboost, svr, catboost models on logits output of ensembled models. 
+2. Train XGBoost, SVR, CATBoost, LightGBM models on logits output of ensembled models. 
 3. Voting on results from stage 2.
 
 ## Getting Started
